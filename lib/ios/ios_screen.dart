@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'constants.dart';
-import 'reuseable_data.dart';
+import '../components/constants.dart';
+import '../reusable widget/reuseable_data.dart';
 import 'package:intl/intl.dart';
 
 enum Color {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'constants.dart';
+import '../components/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:custom_clippers/custom_clippers.dart';
 import 'bmi_screen.dart';

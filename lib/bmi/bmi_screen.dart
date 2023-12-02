@@ -1,8 +1,8 @@
-import 'package:calculators/calculations.dart';
+import 'package:calculators/bmi/calculations.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:calculators/reuseable_data.dart';
-import 'constants.dart';
+import 'package:calculators/reusable%20widget/reuseable_data.dart';
+import '../components/constants.dart';
 import 'result_page.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:flutter_ruler_picker/flutter_ruler_picker.dart';

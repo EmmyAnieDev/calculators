@@ -1,6 +1,6 @@
-import 'bmi_screen.dart';
+import 'bmi/bmi_screen.dart';
 import 'package:flutter/material.dart';
-import 'ios_screen.dart';
+import 'ios/ios_screen.dart';
 
 class CalculatorPageView extends StatefulWidget {
   const CalculatorPageView({
