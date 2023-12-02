@@ -48,7 +48,7 @@ class _IosScreenState extends State<IosScreen> {
         firstValue = 0; // Reset firstValue to null
         secondValue = 0; // Reset selectedColor to null
       });
-    } else if (btnNum == '+/-' && text != '0') {
+    } else if (btnNum == '+/-') {
       setState(() {
         if (!text.startsWith('-')) {
           // If the number is positive, make it negative
@@ -57,6 +57,12 @@ class _IosScreenState extends State<IosScreen> {
           // If the number is negative, make it positive
           text = text.substring(1); // Remove the negative sign
         }
+      });
+    } else if (btnNum == '%') {
+      setState(() {
+        double value = double.parse(text);
+        value = value / 100; // Calculate the percentage
+        text = value.toString();
       });
     } else if (btnNum == '+' ||
         btnNum == '-' ||
@@ -162,6 +168,7 @@ class _IosScreenState extends State<IosScreen> {
                     onPress: () {
                       setState(() {
                         selectedColor = Color.plusMinus;
+                        clickedNum('+/-');
                       });
                     },
                   ),
@@ -173,6 +180,7 @@ class _IosScreenState extends State<IosScreen> {
                     onPress: () {
                       setState(() {
                         selectedColor = Color.percent;
+                        clickedNum('%');
                       });
                     },
                   ),
