@@ -105,11 +105,16 @@ class _IosScreenState extends State<IosScreen> {
       });
     } else {
       setState(() {
-        if (text == '0') {
-          text = btnNum; // If text is '0', replace it with the clicked number
-        } else {
-          text =
-              text + btnNum; // Append the clicked number to the existing text
+        // limit of having just 9 values
+        if (text.length <= 9) {
+          if (text == '0') {
+            text = btnNum; // If text is '0', replace it with the clicked number
+          } else {
+            if (text.length < 9) {
+              text = text +
+                  btnNum; // Append the clicked number to the existing text
+            }
+          }
         }
       });
     }
@@ -136,9 +141,16 @@ class _IosScreenState extends State<IosScreen> {
                           : NumberFormat.decimalPattern()
                               .format(double.tryParse(text) ?? 0),
                       textAlign: TextAlign.left,
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.white,
-                        fontSize: 70,
+                        fontSize: (text.length ==
+                                9) // changing fontSize when text increases.
+                            ? 5
+                            : (text.length == 8)
+                                ? 65
+                                : (text.length == 7)
+                                    ? 75
+                                    : 85,
                         fontWeight: FontWeight.w300,
                       ),
                     ),
