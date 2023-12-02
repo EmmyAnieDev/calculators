@@ -8,13 +8,13 @@ class ResultsPage extends StatelessWidget {
   const ResultsPage({
     Key? key,
     required this.bmiResult,
-    required this.resultText,
-    required this.interpretation,
+    required this.bmiResultText,
+    required this.bmiResultMessage,
   }) : super(key: key);
 
   final String bmiResult;
-  final String resultText;
-  final String interpretation;
+  final String bmiResultText;
+  final String bmiResultMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -83,11 +83,11 @@ class ResultsPage extends StatelessWidget {
                                 color: kWhiteColor),
                           ),
                           Text(
-                            '($resultText)',
+                            '($bmiResultText)',
                             style: kResultsStyle,
                           ),
                           Text(
-                            interpretation,
+                            bmiResultMessage,
                             textAlign: TextAlign.center,
                             style: kResultsStyle,
                           ),
@@ -129,84 +129,4 @@ class ResultsPage extends StatelessWidget {
       ),
     );
   }
-
-  // Widget build(BuildContext context) {
-  //   return LayoutBuilder(
-  //     builder: (context, constraints) => SingleChildScrollView(
-  //       child: SizedBox(
-  //         height: constraints.maxHeight * .5 + 30,
-  //         child: Stack(
-  //           children: [
-  //             Positioned(
-  //               bottom: constraints.maxHeight *
-  //                   0.465, // Adjust this ratio as needed
-  //               left: 0,
-  //               right: 0,
-  //               child: Center(
-  //                 child: FloatingActionButton(
-  //                   onPressed: () {
-  //                     Navigator.push(
-  //                       context,
-  //                       MaterialPageRoute(
-  //                         builder: (context) => const CalculatorPageView(),
-  //                       ),
-  //                     );
-  //                     // Action when the round button is pressed
-  //                   },
-  //                   elevation: 0,
-  //                   shape: const CircleBorder(),
-  //                   backgroundColor: kFloatingColor,
-  //                   child: const Icon(
-  //                     FontAwesomeIcons.arrowRotateRight,
-  //                     color: kWhiteColor,
-  //                   ),
-  //                 ),
-  //               ),
-  //             ),
-  //             Positioned(
-  //               bottom: 0,
-  //               left: 0,
-  //               right: 0,
-  //               child: ClipPath(
-  //                 clipper: TicketPassClipper(
-  //                     position: constraints.maxWidth * 0.565, holeRadius: 65),
-  //                 child: Container(
-  //                   height: MediaQuery.of(context).size.height * 0.5,
-  //                   width: double.infinity,
-  //                   decoration: const BoxDecoration(
-  //                     color: kBlueColor,
-  //                     borderRadius: BorderRadius.only(
-  //                       topLeft: Radius.circular(20.0),
-  //                       topRight: Radius.circular(20.0),
-  //                     ),
-  //                   ),
-  //                   child: const Padding(
-  //                     padding: EdgeInsets.symmetric(
-  //                         vertical: 20.0, horizontal: 40.0),
-  //                     child: Column(
-  //                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-  //                       children: [
-  //                         // Your other UI elements...
-  //                       ],
-  //                     ),
-  //                   ),
-  //                 ),
-  //               ),
-  //             ),
-  //             Positioned(
-  //               bottom: 1,
-  //               left: 0,
-  //               right: 0,
-  //               child: Container(
-  //                 color: kBlueColor,
-  //                 width: 50,
-  //                 height: 32,
-  //               ),
-  //             ),
-  //           ],
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
 }

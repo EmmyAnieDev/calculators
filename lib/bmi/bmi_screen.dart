@@ -150,17 +150,6 @@ class _BmiScreenState extends State<BmiScreen> {
                           return value.toInt().toString();
                         },
                         ranges: ranges,
-                        // scaleLineStyleList: const [
-                        //   ScaleLineStyle(
-                        //       color: Colors.grey,
-                        //       width: 1.5,
-                        //       height: 30,
-                        //       scale: 0),
-                        //   ScaleLineStyle(
-                        //       color: Colors.grey, width: 1, height: 25, scale: 5),
-                        //   ScaleLineStyle(
-                        //       color: Colors.grey, width: 1, height: 15, scale: -1)
-                        // ],
                         onValueChanged: (value) {
                           setState(() {
                             height = value.round();
@@ -340,8 +329,8 @@ class _BmiScreenState extends State<BmiScreen> {
             context: context,
             builder: (context) => ResultsPage(
               bmiResult: calc.calculateBMI(),
-              resultText: calc.getResult(),
-              interpretation: calc.getInterpretation(),
+              bmiResultText: calc.getResult(),
+              bmiResultMessage: calc.getInterpretation(),
             ),
           );
         },
