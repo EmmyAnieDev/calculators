@@ -6,6 +6,7 @@ import '../components/constants.dart';
 import 'result_page.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:flutter_ruler_picker/flutter_ruler_picker.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 enum Gender {
   male,
@@ -39,22 +40,24 @@ class _BmiScreenState extends State<BmiScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: kBackGroundColor,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(10.r),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 15.0),
+              Padding(
+                padding: EdgeInsets.only(left: 15.r),
                 child: Text(
                   'BMI Calculator',
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     color: kFloatingColor,
-                    fontSize: 20,
+                    fontSize: 25.sp,
                   ),
                 ),
               ),
@@ -69,24 +72,24 @@ class _BmiScreenState extends State<BmiScreen> {
                           });
                         },
                         child: Container(
-                          margin: const EdgeInsets.all(15),
+                          margin: EdgeInsets.all(10.r),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(10.r),
                             border: clickedGender == Gender.male
-                                ? Border.all(width: 3, color: kBlackColor)
-                                : Border.all(width: 2, color: kBorderColor),
+                                ? Border.all(width: 3.w, color: kBlackColor)
+                                : Border.all(width: 2.w, color: kBorderColor),
                             color: kWhiteColor,
                           ),
-                          child: const Column(
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
                                 FontAwesomeIcons.mars,
-                                size: 67,
-                                color: Color(0xFFFFD279),
+                                size: 70.sp,
+                                color: const Color(0xFFFFD279),
                               ),
-                              SizedBox(height: 15),
-                              Text('Male', style: kLabelStyle),
+                              SizedBox(height: 15.h),
+                              const Text('Male', style: kLabelStyle),
                             ],
                           ),
                         ),
@@ -100,24 +103,24 @@ class _BmiScreenState extends State<BmiScreen> {
                           });
                         },
                         child: Container(
-                          margin: const EdgeInsets.all(15),
+                          margin: EdgeInsets.all(10.r),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             border: clickedGender == Gender.female
-                                ? Border.all(width: 3, color: kBlackColor)
-                                : Border.all(width: 2, color: kBorderColor),
+                                ? Border.all(width: 3.w, color: kBlackColor)
+                                : Border.all(width: 2.w, color: kBorderColor),
                             color: kWhiteColor,
                           ),
-                          child: const Column(
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
                                 FontAwesomeIcons.venus,
-                                size: 67,
-                                color: Color(0xFFF94B86),
+                                size: 70.sp,
+                                color: const Color(0xFFF94B86),
                               ),
-                              SizedBox(height: 15),
-                              Text('Female', style: kLabelStyle),
+                              SizedBox(height: 15.h),
+                              const Text('Female', style: kLabelStyle),
                             ],
                           ),
                         ),
@@ -138,10 +141,11 @@ class _BmiScreenState extends State<BmiScreen> {
                       ),
                       Text(
                         height.toStringAsFixed(0),
-                        style: const TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 35),
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: screenHeight * 0.04,
+                        ),
                       ),
                       const SizedBox(height: 10),
                       RulerPicker(
@@ -152,17 +156,17 @@ class _BmiScreenState extends State<BmiScreen> {
                         ranges: ranges,
                         onValueChanged: (value) {
                           setState(() {
-                            height = value.round();
+                            height = value.round(); // round to integer
                           });
                         },
-                        width: 310,
-                        height: 50,
+                        width: screenWidth * 0.8,
+                        height: screenHeight * 0.05,
                         rulerMarginTop: 1,
                         marker: Container(
-                          width: 3,
+                          width: 3.w,
                           decoration: BoxDecoration(
                             color: Colors.black,
-                            borderRadius: BorderRadius.circular(5),
+                            borderRadius: BorderRadius.circular(5.r),
                           ),
                         ),
                       ),
@@ -175,45 +179,47 @@ class _BmiScreenState extends State<BmiScreen> {
                   children: [
                     Expanded(
                       child: ReusableCard(
-                          color: kWhiteColor,
-                          cardChild: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                const Text(
-                                  'Weight (kg)',
-                                  style: kLabelStyle,
+                        color: kWhiteColor,
+                        cardChild: Padding(
+                          padding: EdgeInsets.all(8.r),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              const Text(
+                                'Weight (kg)',
+                                style: kLabelStyle,
+                              ),
+                              Container(
+                                width: 110.w,
+                                height: 55.h,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30.r),
+                                  color: const Color(0xFFEEEEF0),
                                 ),
-                                Container(
-                                  width: 110,
-                                  height: 55,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(30),
-                                    color: const Color(0xFFEEEEF0),
-                                  ),
-                                  child: NumberPicker(
-                                    itemWidth:
-                                        37, // Set an approximate width for each item
-                                    itemCount: 3,
-                                    minValue: 30,
-                                    maxValue: 90,
-                                    value: weight,
-                                    selectedTextStyle: const TextStyle(
-                                        fontSize: 30,
-                                        fontWeight: FontWeight
-                                            .bold), // Adjust the font size as needed
-                                    onChanged: (int newValue) {
-                                      setState(() {
-                                        weight = newValue.round();
-                                      });
-                                    },
-                                    axis: Axis.horizontal,
-                                  ),
-                                )
-                              ],
-                            ),
-                          )),
+                                child: NumberPicker(
+                                  itemWidth: 37
+                                      .w, // Set an approximate width for each item
+                                  itemCount: 3,
+                                  minValue: 30,
+                                  maxValue: 90,
+                                  value: weight,
+                                  textStyle: TextStyle(fontSize: 14.sp),
+                                  selectedTextStyle: TextStyle(
+                                      fontSize: 28.sp,
+                                      fontWeight: FontWeight
+                                          .bold), // Adjust the font size as needed
+                                  onChanged: (int newValue) {
+                                    setState(() {
+                                      weight = newValue.round();
+                                    });
+                                  },
+                                  axis: Axis.horizontal,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
                     Expanded(
                       child: ReusableCard(
@@ -221,32 +227,34 @@ class _BmiScreenState extends State<BmiScreen> {
                         cardChild: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            const Text('Age'),
+                            const Text('Age', style: kLabelStyle),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        age--;
-                                      });
-                                    },
-                                    child: const Icon(
-                                        FontAwesomeIcons.squareMinus)),
+                                  onTap: () {
+                                    setState(() {
+                                      age--;
+                                    });
+                                  },
+                                  child: Icon(FontAwesomeIcons.squareMinus,
+                                      size: 30.sp),
+                                ),
                                 Text(
                                   age.toString(),
-                                  style: const TextStyle(
-                                      fontSize: 35,
+                                  style: TextStyle(
+                                      fontSize: 38.sp,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        age++;
-                                      });
-                                    },
-                                    child: const Icon(
-                                        FontAwesomeIcons.squarePlus)),
+                                  onTap: () {
+                                    setState(() {
+                                      age++;
+                                    });
+                                  },
+                                  child: Icon(FontAwesomeIcons.squarePlus,
+                                      size: 28.sp),
+                                ),
                               ],
                             )
                           ],
@@ -261,18 +269,18 @@ class _BmiScreenState extends State<BmiScreen> {
         ),
       ),
       bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(topLeft: Radius.circular(30)),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(30.r)),
         ),
-        child: const ClipRRect(
+        child: ClipRRect(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20.0),
-            topRight: Radius.circular(20.0),
+            topLeft: Radius.circular(20.r),
+            topRight: Radius.circular(20.r),
           ),
           child: BottomAppBar(
-            height: 70,
+            height: screenHeight * 0.11,
             elevation: 0,
-            shape: CircularNotchedRectangle(),
+            shape: const CircularNotchedRectangle(),
             color: kBlueColor,
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -280,13 +288,13 @@ class _BmiScreenState extends State<BmiScreen> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
+                      const Icon(
                         FontAwesomeIcons.chartLine,
                         color: kWhiteColor,
                         size: 18,
                       ),
-                      SizedBox(height: 5),
-                      Text(
+                      SizedBox(height: 5.h),
+                      const Text(
                         'ACTIVITY',
                         style: TextStyle(
                             color: kWhiteColor,
@@ -295,17 +303,16 @@ class _BmiScreenState extends State<BmiScreen> {
                       )
                     ],
                   ),
-                  SizedBox(width: 0),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
+                      const Icon(
                         FontAwesomeIcons.user,
                         color: kWhiteColor,
                         size: 18,
                       ),
-                      SizedBox(height: 5),
-                      Text(
+                      SizedBox(height: 5.h),
+                      const Text(
                         'PROFILE',
                         style: TextStyle(
                             color: kWhiteColor,
@@ -337,10 +344,10 @@ class _BmiScreenState extends State<BmiScreen> {
         elevation: 0,
         shape: const CircleBorder(),
         backgroundColor: kFloatingColor,
-        child: const Text(
+        child: Text(
           'BMI',
           style: TextStyle(
-              fontSize: 15, fontWeight: FontWeight.bold, color: kWhiteColor),
+              fontSize: 15.sp, fontWeight: FontWeight.bold, color: kWhiteColor),
         ),
       ),
     );

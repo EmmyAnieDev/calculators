@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:calculators/components/constants.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ReusableCard extends StatelessWidget {
   const ReusableCard({super.key, required this.color, required this.cardChild});
@@ -10,10 +11,10 @@ class ReusableCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(15),
+      margin: EdgeInsets.all(10.r),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(width: 2, color: kBorderColor),
+        borderRadius: BorderRadius.circular(10.r),
+        border: Border.all(width: 2.w, color: kBorderColor),
         color: color,
       ),
       child: cardChild,
@@ -36,18 +37,19 @@ class NumberButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sizeHeight = MediaQuery.of(context).size.height;
     return Expanded(
       child: RawMaterialButton(
         onPressed: onPress,
-        constraints: const BoxConstraints.tightFor(
-          height: 75.0,
+        constraints: BoxConstraints.tightFor(
+          height: 65.h,
         ),
         splashColor: splashColor,
         shape: const CircleBorder(),
         fillColor: backColor,
         child: Text(
           label,
-          style: TextStyle(fontSize: 40, color: color),
+          style: TextStyle(fontSize: sizeHeight * 0.05, color: color),
         ),
       ),
     );

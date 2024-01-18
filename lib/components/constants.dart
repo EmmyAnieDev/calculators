@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 const kBlackColor = Color(0xFF000000);
 const kBlueColor = Color(0xFF2667CF);
@@ -14,11 +15,11 @@ const kSplashColor2 = Color(0xFFFBC78D);
 const kSplashColor3 = Color(0xFFD9D9D9);
 
 const kLabelStyle = TextStyle(
-  fontSize: 18,
+  fontSize: 21,
 );
 
-const kResultsStyle = TextStyle(
-  fontSize: 15,
+final kResultsStyle = TextStyle(
+  fontSize: 17.sp,
   color: kWhiteColor,
   fontWeight: FontWeight.w500,
 );
